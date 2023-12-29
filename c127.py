@@ -1,11 +1,13 @@
 from bs4 import BeautifulSoup
 import time
 import pandas as pd
+from selenium import webdriver
+from selenium.webdriver.common.by import by
 
 START_URL = "https://en.wikipedia.org/wiki/List_of_brightest_stars"
 
 # Controlador web
-browser = webdriver.Chrome("")
+browser = webdriver.Chrome()
 browser.get(START_URL)
 
 time.sleep(10)
@@ -21,14 +23,14 @@ def scrape():
         for col_data in table_cols:
             data = col_data.text.strip()
             temp_list.append(data)
-        scarped_data.append(temp_list)
+        scraped_data.append(temp_list)
 stars_data = []
-for i in range(0,len(scarped_data)):
-    Star_names = scarped_data [i][1]
-    Distance = scarped_data [i][3]
-    Mass = scarped_data [i][5]
-    Radius = scarped_data [i][6]
-    Lum = scarped_data [i][7]
+for i in range(0,len(scraped_data)):
+    Star_names = scraped_data [i][1]
+    Distance = scraped_data [i][3]
+    Mass = scraped_data [i][5]
+    Radius = scraped_data [i][6]
+    Lum = scraped_data [i][7]
     required_data = [Star_names, Distance, Mass, Radiusm, Lum]
     stars_data.append(required_data)
 headers = ['Star_name','Distance','Mass','Radius','Luminosity']
